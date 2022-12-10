@@ -1,0 +1,18 @@
+<statistics>
+  <fine>
+    <type>PARKING VIOLATIONS</type>
+    <sum>1.7501976E9</sum>
+  </fine>
+  <fine>
+    <type>TRAFFIC LIGHT VIOLATIONS</type>
+    <sum>1.62749548E9</sum>
+  </fine>
+  <fine>
+    <type>DRINK AND DRUG DRIVING</type>
+    <sum>1.6261182E9</sum>
+  </fine>
+  <fine>
+    <type>SPEEDING</type>
+    <sum>87500.0</sum>
+  </fine>
+</statistics>
