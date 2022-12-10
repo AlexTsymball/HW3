@@ -35,7 +35,7 @@ public class Task2Test {
         DateFormatException exception = assertThrows(DateFormatException.class, () ->{
             Task2.loadFromProperties(TestClassWithIncorrectFormat.class, PATH_TO_PROPERTIES);
         });
-        assertEquals(exception.getMessage(), "Can't parse date. Wrong date format");
+        assertEquals(exception.getMessage(), "Can't parse date. Wrong format or date/time");
     }
 
     @Test

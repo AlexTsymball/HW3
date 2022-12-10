@@ -18,24 +18,13 @@ import java.util.stream.Collectors;
 public class Statistics{
     @JacksonXmlElementWrapper( useWrapping = false)
     @JacksonXmlProperty(localName = "fine")
-//    private List<TypeAndSum> fines = new CopyOnWriteArrayList<>();
     private List<TypeAndSum> fines = new ArrayList<>();
 
-    @Override
-    public String toString() {
-        return "Statistics{" +
-                "fines=" + fines +
-                '}';
-    }
 
     public  void addFines(TypeAndSum fine) {
         fines.add(fine);
     }
-    public  void addAllFines(TypeAndSum[] fines) {
-        Collections.addAll(this.fines, fines);
-    }
     public  void addAllFinesFromStatistics(Statistics statistics) {
-//        System.out.println("addAll " + Thread.currentThread().getName());
         fines.addAll(statistics.getFines());
     }
 

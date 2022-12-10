@@ -6,7 +6,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface Property {
-    String name() default ""; //if name will be ""
+    String name() default "";
     String format() default ""; //this will be ignore if format() will be not on Instant field
 
 }

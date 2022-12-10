@@ -83,40 +83,26 @@ public class PropertyParser {
      * @return boolean
      */
     private static boolean checkName(String name) {
-//        Pattern nameFormat = Pattern.compile("^\\w+[^.]*(.\\w+[^.]*)*$"); //letters . and other characters
-//        Pattern nameFormat = Pattern.compile("^\\w+(.\\w+)*$"); //only letters . _
-        Pattern nameFormat = Pattern.compile("^[a-zA-Z0-9]+(_[a-zA-Z0-9]+)*(.[a-zA-Z0-9]+(_[a-zA-Z0-9]+)*)*$"); //only letters, without two or more _
+        Pattern nameFormat = Pattern.compile("^[a-zA-Z0-9]+(_[a-zA-Z0-9]+)*(.[a-zA-Z0-9]+(_[a-zA-Z0-9]+)*)*$");
         Matcher matcher = nameFormat.matcher(name);
         return matcher.find();
     }
 
     /**
      * Якщо дату не задано, то відрахування йде від 1 січня 1970 року.
-     * Якщо дату та час не задано, то буде 1970-01-01T00:00:00Z.
-     * TimeZone вихідного Instant буде UTC
+     * Якщо дату та час не задано, то буде 1970-01-01T00:00:00Z.Наприклад:
+     *      value - 6:55
+     *      format - H:ss
+     *      Instant - 1970-01-01T06:00:55Z
+     * TimeZone вихідного Instant буде UTC. Наприклад:
+     *      value - Tue 02 Jan 2018 18:07:59 IST
+     *      format - E dd MMM yyyy HH:mm:ss z
+     *      Instant - 2018-01-02T16:07:59Z
      * @param value
      * @param format
      * @return Instant
      */
     private static Instant convert2Instant(String value, String format) {
-//        value = "Tue 02 Jan 2018 18:07:59 IST";
-//        value = "22:55:37-0800";
-//        value = "";
-//        value = "6:55";
-//         value = "Tue 02 Jan 2018";
-//         value = "09:15:30 PM, Sun 10/09/2022";
-//         value = "5:45:22 AM";
-//         value = "0000-01-01T18:30:00Z";
-//         format = "";
-//         format = "E dd MMM yyyy HH:mm:ss z";
-//         format = "HH:mm:ssZZZZ";
-//        format = "E dd MMM yyyy";
-//         format = "hh:mm:ss a, EEE M/d/uuuu";
-//         format = "h:mm:ss a";
-//        format = "H:ss";
-//        format = "";
-//        System.out.println(format);
-//        System.out.println(value);
         Instant instant ;
         if (format.equals("")) {
             if (value.equals("")) {

@@ -26,7 +26,6 @@ public class Task2 {
         Field[] declaredFields = cls.getDeclaredFields();
 
         Map<Field, Object> fieldNameValue = PropertyParser.getFieldFromPropertyFile(declaredFields, propertiesPath);
-//        System.out.println(fieldNameValue);
         Constructor<T> emptyConstructor;
         T classObject;
         try {
@@ -34,7 +33,6 @@ public class Task2 {
             emptyConstructor.setAccessible(true);
             classObject = emptyConstructor.newInstance();
         } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
-//            e.printStackTrace();
             throw new NoEmptyConstructorException("There is no empty constructor");
         }
 
@@ -46,12 +44,9 @@ public class Task2 {
                 ), key.getType());
                 setter.setAccessible(true);
                 setter.invoke(classObject, value);
-//                PropertyUtils.setProperty(classObject, key.getName(), value);
             } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-//                e.printStackTrace();
                 throw new NoSuchSetterException("There is problem with set value for  " + key.getName());
             }
-
         });
         return classObject;
 

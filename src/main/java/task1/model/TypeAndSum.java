@@ -12,7 +12,7 @@ import task1.serializer.CustomDoubleSerializer;
 @JsonAutoDetect
 @JsonPropertyOrder({"type", "sumFineAmount"})
 @Getter
-//@Setter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -21,22 +21,6 @@ public class TypeAndSum {
     private String type;
 
     @JsonSerialize(using = CustomDoubleSerializer.class)
-    @JsonProperty("fine_amount")
+    @JsonProperty("sum")
     private Double sumFineAmount;
-
-    @Override
-    public String toString() {
-        return "TypeAndSum{" +
-                "type='" + type + '\'' +
-                ", sumFineAmount=" + sumFineAmount +
-                '}';
-    }
-
-    public synchronized void setType(String type) {
-        this.type = type;
-    }
-
-    public synchronized void setSumFineAmount(Double sumFineAmount) {
-        this.sumFineAmount = sumFineAmount;
-    }
 }
