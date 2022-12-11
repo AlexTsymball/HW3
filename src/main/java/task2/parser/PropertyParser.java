@@ -113,6 +113,11 @@ public class PropertyParser {
      * format - E dd MMM yyyy HH:mm:ss z
      * Instant - 2018-01-02T16:07:59Z
      *
+     * Locale задано UK. Тож якщо дата буде задано не англійською, то буде помилка. Наприклад:
+     * value - mardi janvier 2018 14:51:02.354+0530
+     * format - EEEEE MMMMM yyyy HH:mm:ss.SSSZ
+     * return DataFormatException
+     *
      * @param value
      * @param format
      * @return Instant
@@ -136,7 +141,7 @@ public class PropertyParser {
             }
         }
         try {
-            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.UK);
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(format, Locale.US);
             simpleDateFormat.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date;
             try {
