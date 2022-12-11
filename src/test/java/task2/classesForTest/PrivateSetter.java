@@ -1,4 +1,4 @@
-package classForTest;
+package task2.classesForTest;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -10,7 +10,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-public class TestClassWithPrivateSetter {
+public class PrivateSetter {
     private String stringProperty;
 
     @Property(name = "numberProperty")

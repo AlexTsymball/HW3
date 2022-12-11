@@ -29,7 +29,7 @@ public class Task1 {
      * 
      *
      */
-    private static final String PATH_TO_DIRECTORIES_WITH_FILES = "src/main/files/";
+    private static final String PATH_TO_DIRECTORIES_WITH_FILES = "src/files/";
     public static final int[] THREADS = { 1,2,4,8};
 
     public static void main(String[] args) {

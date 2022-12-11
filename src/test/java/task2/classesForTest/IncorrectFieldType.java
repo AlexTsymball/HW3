@@ -1,23 +1,19 @@
-package classForTest;
+package task2.classesForTest;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import task2.annotation.Property;
 
 import java.time.Instant;
 
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@EqualsAndHashCode
-public class TestClassWithoutSetter {
+public class IncorrectFieldType {
     private String stringProperty;
 
     @Property(name = "numberProperty")
-    private int myNumber;
+    private double myNumber;
 
     @Property(format="dd.MM.yyyy HH:mm")
     private Instant timeProperty;
-
-
 }

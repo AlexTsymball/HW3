@@ -12,7 +12,7 @@ public class Test {
     private String stringProperty;
 
     @Property(name="number.Property")
-    private int myNumber;
+    private Integer myNumber;
 
     @Property(name="numberProperty")
     private int id;
@@ -30,18 +30,18 @@ public class Test {
         this.id = id;
     }
 
-    public int setId(String myNumber2) {
+    public int setId(String myNumber) {
         return 2;
     }
 
-    public void setId(double myNumber2) {
+    public void setId(double myNumber) {
         System.out.println("test");
     }
     public void setStringProperty(String stringProperty) {
         this.stringProperty = stringProperty;
     }
 
-    public void setMyNumber(int myNumber) {
+    public void setMyNumber(Integer myNumber) {
         this.myNumber = myNumber;
     }
 
