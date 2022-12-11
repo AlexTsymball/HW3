@@ -52,9 +52,12 @@ public class PropertyParser {
             Object fieldType = a.getType();
             String fieldValueFromProperty = properties.getProperty(name);
             if (fieldType.equals(String.class)) {
+                if ( fieldValueFromProperty.equals("")) {
+                    return null;
+                }
                 return fieldValueFromProperty;
             } else if (fieldType.equals(Integer.class)) {
-                if (fieldValueFromProperty.equals("null")) {
+                if (fieldValueFromProperty.equals("null") || fieldValueFromProperty.equals("")) {
                     return null;
                 }
                 try {
@@ -63,6 +66,9 @@ public class PropertyParser {
                     throw new NumberFormatException("Wrong input type. Can't convert " + fieldValueFromProperty + " to Integer");
                 }
             } else if (fieldType.equals(int.class)) {
+                if ( fieldValueFromProperty.equals("")) {
+                    return 0;
+                }
                 try {
                     return convert2IntegerInt(fieldValueFromProperty);
                 } catch (NumberFormatException e) {
@@ -107,7 +113,7 @@ public class PropertyParser {
      * value - 6:55
      * format - H:ss
      * Instant - 1970-01-01T06:00:55Z
-     * Якщо дату та час не задано, то буде 1970-01-01T00:00:00Z.
+     * Якщо дату та час не задано або задано null, то буде null.
      * TimeZone вихідного Instant буде UTC. Наприклад:
      * value - Tue 02 Jan 2018 18:07:59 IST
      * format - E dd MMM yyyy HH:mm:ss z
@@ -125,9 +131,7 @@ public class PropertyParser {
     private static Instant convert2Instant(String value, String format) {
         Instant instant;
         if (format.equals("")) {
-            if (value.equals("")) {
-                return Instant.ofEpochSecond(0);
-            } else if (value.equals("null")) {
+            if (value.equals("")  || value.equals("null")) {
                 return null;
             }
             try {
