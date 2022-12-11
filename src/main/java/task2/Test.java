@@ -7,7 +7,7 @@ import task2.annotation.Property;
 import java.time.Instant;
 
 @ToString
-//@AllArgsConstructor
+@AllArgsConstructor
 public class Test {
     private String stringProperty;
 
@@ -22,8 +22,8 @@ public class Test {
     private Instant timeProperty;
 
 
-//    private Test() {
-//    }
+    private Test() {
+    }
 
 
     private void setId(int id) {
