@@ -15,15 +15,20 @@ public class Parser implements Supplier<Statistics> {
     private File file = null;
     private File[] files = null;
     private final Statistics statistics;
+    private final boolean isSingle;
 
-    public Parser(File file, Statistics statistics) {
+    public Parser(File file, Statistics statistics, boolean isSingle) {
         this.file = file;
         this.statistics = statistics;
+        this.isSingle = isSingle;
+
     }
 
-    public Parser(File[] files, Statistics statistics) {
+    public Parser(File[] files, Statistics statistics, boolean isSingle) {
         this.files = files;
         this.statistics = statistics;
+        this.isSingle = isSingle;
+
     }
 
 
@@ -50,7 +55,7 @@ public class Parser implements Supplier<Statistics> {
 
     @Override
     public Statistics get() {
-        if (files != null) {
+        if (isSingle) {
             for (File file : files) {
                 try {
                     getFineTypeAmountFromJson(file);

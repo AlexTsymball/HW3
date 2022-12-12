@@ -51,11 +51,11 @@ public class Task1 {
             List<CompletableFuture<Statistics>> futureArrayList = new ArrayList<>();
             if (numberOfThreads == 1) {
                 futureArrayList.add(CompletableFuture.supplyAsync(
-                        new Parser(listInputFiles, new Statistics()), executorService));
+                        new Parser(listInputFiles, new Statistics(), true), executorService));
             } else {
                 for (File files : listInputFiles) {
                     futureArrayList.add(CompletableFuture.supplyAsync(
-                            new Parser(files, new Statistics()), executorService));
+                            new Parser(files, new Statistics(), false), executorService));
                 }
             }
 

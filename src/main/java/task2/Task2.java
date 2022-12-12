@@ -39,9 +39,10 @@ public class Task2 {
 
         fieldNameValue.forEach((key, value) -> {
             try {
-                Method setter = cls.getDeclaredMethod("set" + key.getName().replaceFirst(
-                        key.getName().substring(0,1), key.getName().substring(0,1).toUpperCase()
-                ), key.getType());
+                String field = key.getName();
+                String firstLetter = field.substring(0,1);
+                Method setter = cls.getDeclaredMethod("set" + field.replaceFirst(
+                        firstLetter, firstLetter.toUpperCase()), key.getType());
                 setter.setAccessible(true);
                 setter.invoke(classObject, value);
             } catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
