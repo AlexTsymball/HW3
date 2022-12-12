@@ -35,21 +35,22 @@ public class PropertyParser {
         return fieldsNameValueMap;
     }
 
-    private static Object getValue(Field a, Properties properties) {
-        String name = a.getName();
-        if (a.isAnnotationPresent(Property.class) && !a.getAnnotation(Property.class).name().equals("")) {
-            if (!checkName(a.getAnnotation(Property.class).name())) {
+
+    private static Object getValue(Field field, Properties properties) {
+        String name = field.getName();
+        if (field.isAnnotationPresent(Property.class) && !field.getAnnotation(Property.class).name().equals("")) {
+            if (!checkName(field.getAnnotation(Property.class).name())) {
                 throw new WrongNameException("Wrong name format \"" +
-                        a.getAnnotation(Property.class).name() + "\"");
+                        field.getAnnotation(Property.class).name() + "\"");
             }
 
-            name = a.getAnnotation(Property.class).name();
+            name = field.getAnnotation(Property.class).name();
 
         }
         Set<Object> keySey = properties.keySet();
 
         if (keySey.contains(name)) {
-            Object fieldType = a.getType();
+            Object fieldType = field.getType();
             String fieldValueFromProperty = properties.getProperty(name);
             if (fieldType.equals(String.class)) {
                 if ( fieldValueFromProperty.equals("")) {
@@ -61,7 +62,7 @@ public class PropertyParser {
                     return null;
                 }
                 try {
-                    return convert2IntegerInt(fieldValueFromProperty);
+                    return convert2Int(fieldValueFromProperty);
                 } catch (NumberFormatException e) {
                     throw new NumberFormatException("Wrong input type. Can't convert " + fieldValueFromProperty + " to Integer");
                 }
@@ -70,14 +71,14 @@ public class PropertyParser {
                     return 0;
                 }
                 try {
-                    return convert2IntegerInt(fieldValueFromProperty);
+                    return convert2Int(fieldValueFromProperty);
                 } catch (NumberFormatException e) {
                     throw new NumberFormatException("Wrong input type. Can't convert " + fieldValueFromProperty + " to int");
                 }
             } else if (fieldType.equals(Instant.class)) {
                 String format = "";
-                if (a.isAnnotationPresent(Property.class)) {
-                    format = a.getAnnotation(Property.class).format();
+                if (field.isAnnotationPresent(Property.class)) {
+                    format = field.getAnnotation(Property.class).format();
                 }
                 return convert2Instant(fieldValueFromProperty, format);
             } else {
@@ -163,7 +164,7 @@ public class PropertyParser {
     }
 
 
-    private static Integer convert2IntegerInt(String value) throws NumberFormatException {
+    private static Integer convert2Int(String value) throws NumberFormatException {
         return Integer.parseInt(value);
 
     }
